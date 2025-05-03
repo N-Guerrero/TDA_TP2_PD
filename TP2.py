@@ -1,6 +1,6 @@
 #OPT(i) = min(
 #"" si i= |seg|,
-#seg[i:j]+" "+opt(j) para el primer j∈(i+1,∣s∣] tal que s[i:j]∈D y opt(j)!=None
+#seg[i:j]+" "+opt(j) para el primer j∈(i+1,∣s∣]tal que s[i:j]∈D y opt(j)!=None
 #) 
 def cargar_palabras(path_archivo):
     diccionario = []
@@ -13,33 +13,33 @@ def cargar_palabras(path_archivo):
 
 
 
-# def segmentar_texto(seg, diccionario):
-#     from functools import lru_cache
+def segmentar_texto(s, diccionario, memo, i=0):
+    if i in memo:
+        return memo[i]
+    if i == len(s):
+        return ""
 
-#     diccionario = set(diccionario)  # Para búsqueda rápida
+    for j in range(i + 1, len(s) + 1):
+        palabra = s[i:j]
+        if palabra in diccionario:
+            resto = segmentar_texto(s, diccionario, memo, j)
+            if resto is not None:
+                memo[i] = palabra if resto == "" else palabra + " " + resto
+                return memo[i]
 
-#     @lru_cache(maxsize=None)
-#     def dp(i):
-#         if i == len(seg):
-#             return ""  # Caso base: cadena vacía
-
-#         for j in range(i + 1, len(seg) + 1):
-#             palabra = seg[i:j]
-#             if palabra in diccionario:
-#                 resto = dp(j)
-#                 if resto is not None:
-#                     if resto == "":
-#                         return palabra
-#                     else:
-#                         return palabra + " " + resto
-
-#         return None  # No se pudo segmentar desde i
-
-#     return dp(0)
+    memo[i] = None
+    return None
 
 
 def main(archivo1,archivo2):
     diccionario=cargar_palabras(archivo1)
     mensajes=cargar_palabras(archivo2)
+    dicc_set=set(diccionario)
+    
+    for mensaje in mensajes:
+        memoria={}
+        resultado=segmentar_texto(mensaje,dicc_set,memoria)
+        print(resultado)
+
 
 
