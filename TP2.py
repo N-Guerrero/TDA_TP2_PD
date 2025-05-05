@@ -13,7 +13,7 @@ def cargar_palabras(path_archivo):
 
 
 
-def segmentar_texto(s, diccionario, memo, i=0):
+def segmentar_texto(s, diccionario, memo, i):
     if i in memo:
         return memo[i]
     if i == len(s):
@@ -38,7 +38,7 @@ def main(archivo1,archivo2):
     
     for mensaje in mensajes:
         memoria={}
-        resultado=segmentar_texto(mensaje,dicc_set,memoria)
+        resultado=segmentar_texto(mensaje,dicc_set,memoria,0)
         print(resultado)
 
 
