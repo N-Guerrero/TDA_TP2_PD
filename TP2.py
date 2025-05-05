@@ -2,6 +2,8 @@
 #"" si i= |seg|,
 #seg[i:j]+" "+opt(j) para el primer j∈(i+1,∣s∣]tal que s[i:j]∈D y opt(j)!=None
 #) 
+import sys
+
 def cargar_palabras(path_archivo):
     diccionario = []
     with open(path_archivo, "r", encoding="utf-8") as archivo:
@@ -32,6 +34,7 @@ def segmentar_texto(s, diccionario, memo, i):
 
 
 def main(archivo1,archivo2):
+    
     diccionario=cargar_palabras(archivo1)
     mensajes=cargar_palabras(archivo2)
     dicc_set=set(diccionario)
@@ -41,5 +44,14 @@ def main(archivo1,archivo2):
         resultado=segmentar_texto(mensaje,dicc_set,memoria,0)
         print(resultado)
 
+
+
+if __name__ == "__main__":
+    if len(sys.argv) != 3:
+        print("Uso: python tp2.py <diccionario.txt> <mensajes.txt>")
+    else:
+        archivo_diccionario = sys.argv[1]
+        archivo_mensajes = sys.argv[2]
+        main(archivo_diccionario, archivo_mensajes)
 
 
