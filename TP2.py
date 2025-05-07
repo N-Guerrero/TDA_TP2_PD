@@ -3,6 +3,7 @@
 #seg[i:j]+" "+opt(j) para el primer j∈(i+1,∣s∣]tal que s[i:j]∈D y opt(j)!=None
 #) 
 import sys
+import time
 
 def cargar_palabras(path_archivo):
     diccionario = []
@@ -15,22 +16,18 @@ def cargar_palabras(path_archivo):
 
 
 
-def segmentar_texto(s, diccionario, memo, i):
-    if i in memo:
-        return memo[i]
-    if i == len(s):
-        return ""
+def segmentar_texto(s, diccionario):
+    n = len(s)
+    opt = [None] * (n + 1)
+    opt[n] = ""  
+    for i in range(n - 1, -1, -1):
+        for j in range(i + 1, n + 1):
+            palabra = s[i:j]
+            if palabra in diccionario and opt[j] is not None:
+                opt[i] = palabra if opt[j] == "" else palabra + " " + opt[j]
+                break 
+    return opt[0]
 
-    for j in range(i + 1, len(s) + 1):
-        palabra = s[i:j]
-        if palabra in diccionario:
-            resto = segmentar_texto(s, diccionario, memo, j)
-            if resto is not None:
-                memo[i] = palabra if resto == "" else palabra + " " + resto
-                return memo[i]
-
-    memo[i] = None
-    return None
 
 
 def main(archivo1,archivo2):
@@ -39,10 +36,19 @@ def main(archivo1,archivo2):
     mensajes=cargar_palabras(archivo2)
     dicc_set=set(diccionario)
     
+    
+    total_chars = sum(len(m) for m in mensajes)
+
+    inicio = time.perf_counter()
     for mensaje in mensajes:
-        memoria={}
-        resultado=segmentar_texto(mensaje,dicc_set,memoria,0)
+        
+        resultado=segmentar_texto(mensaje, dicc_set)
         print(resultado)
+    fin = time.perf_counter()
+    duracion = fin - inicio
+    print(f"chars:{total_chars},time:{duracion:.8f},dicc:{archivo1},mensajes:{archivo2} \n")
+    #with open("tiempos_totales.txt", "a", encoding="utf-8") as salida:
+     #  salida.write(f"chars:{total_chars},time:{duracion:.8f},dicc:{archivo1},mensajes:{archivo2} \n")
 
 
 
