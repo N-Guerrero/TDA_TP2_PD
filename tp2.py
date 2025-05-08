@@ -46,7 +46,7 @@ def main(archivo1,archivo2):
         print(resultado)
     fin = time.perf_counter()
     duracion = fin - inicio
-    print(f"chars:{total_chars},time:{duracion:.8f},dicc:{archivo1},mensajes:{archivo2} \n")
+    #print(f"chars:{total_chars},time:{duracion:.8f},dicc:{archivo1},mensajes:{archivo2} \n")
     #with open("tiempos_totales.txt", "a", encoding="utf-8") as salida:
      #  salida.write(f"chars:{total_chars},time:{duracion:.8f},dicc:{archivo1},mensajes:{archivo2} \n")
 
