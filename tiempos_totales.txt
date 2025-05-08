@@ -21,3 +21,7 @@ chars:8687,time:0.05657580,dicc:Ejemplos\grande.txt,mensajes:Ejemplos_random\men
 chars:9293,time:0.06772510,dicc:Ejemplos\gigante.txt,mensajes:Ejemplos_random\mensajes_100_gigante.txt 
 chars:274943,time:2.82857360,dicc:Ejemplos\gigante.txt,mensajes:Ejemplos_random\mensajes_2000_gigante_largo.txt 
 chars:191563,time:1.29712550,dicc:Ejemplos\gigante.txt,mensajes:Ejemplos_random\mensajes_2000_gigante_largo.txt 
+chars:158329,time:1.84674400,dicc:Ejemplos\grande.txt,mensajes:Ejemplos_random\mensajes_1000_grande_largo.txt 
+chars:224099,time:3.73191000,dicc:Ejemplos\grande.txt,mensajes:Ejemplos_random\mensajes_1000_grande_30.txt 
+chars:403519,time:12.88374080,dicc:Ejemplos\grande.txt,mensajes:Ejemplos_random\mensajes_1000_grande_50.txt 
+chars:532669,time:23.83708330,dicc:Ejemplos\grande.txt,mensajes:Ejemplos_random\mensajes_1000_grande_60.txt 
